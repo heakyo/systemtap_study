@@ -1,0 +1,7 @@
+#!/usr/bin/stap -v
+
+probe process("a.out").statement("*@main.c:31")
+{
+	//printf("fd:%d count:%d\n", $fd, $size);
+	printf("test:%d\n", $test1);
+}

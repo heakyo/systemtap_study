@@ -1,0 +1,10 @@
+#!/usr/bin/stap
+probe syscall.open
+{
+	printf("%s(%d) open (%s)\n", execname(), pid(), argstr);
+}
+
+probe syscall.write
+{
+	printf("fd:%d count:%d buf_uaddr:%p\n", fd, count, buf_uaddr);
+}
