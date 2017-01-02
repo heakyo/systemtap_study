@@ -1,11 +1,20 @@
-#!/usr/bin/stap -v
+#!/usr/bin/stap
 
 function print_message(msg)
 {
 	printf("Hello %s\n", msg);
 }
 
-probe vfs.read {
-	print_message("Systemtap");
+probe syscall.read {
+	//print_message("Systemtap");
+	//printf("name is %s\n", name);
+	printf("target is %d\n", target());
 	exit();
 }
+
+#probe syscall.open,
+#	syscall.open.return
+#{
+#	printf("syscall open test\n");
+#	exit();
+#}
