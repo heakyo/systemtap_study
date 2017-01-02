@@ -1,0 +1,11 @@
+#!/usr/bin/stap -v
+
+function print_message(msg)
+{
+	printf("Hello %s\n", msg);
+}
+
+probe vfs.read {
+	print_message("Systemtap");
+	exit();
+}
