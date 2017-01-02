@@ -1,0 +1,11 @@
+#!/usr/bin/stap
+
+probe vfs.read
+{
+	printf("%s -> %s\n", thread_indent(1), probefunc());
+}
+
+probe vfs.read.return
+{
+	printf("%s <- %s\n", thread_indent(-1), probefunc());
+}
